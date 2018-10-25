@@ -8,7 +8,7 @@ import (
 	"os"
     "net/http"
     "log"
-//    "strings"		
+    "strings"		
 )
 
 // Sites struct - array of features
@@ -87,20 +87,22 @@ func main() {
 	
 	// we iterate through every user within our features array 
 	
-//	road := `{\"type": \"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[`
-//	mark := `\"properties\":{\"marker-size\":\"small\",\"marker-color\":\"#fc0602\",\"marker-symbol\":\"star-stroked\",\"site_name\"=`
-//	t := []string{}		
+	road := `{\"type": \"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[`
+	mark := `\"properties\":{\"marker-size\":\"small\",\"marker-color\":\"#fc0602\",\"marker-symbol\":\"star-stroked\",\"site_name\":\"`
+	t := []string{}		
 	
 	for i := 0; i < len(features.Sites); i++ {
 	  	fmt.Println("\n")	
 		fmt.Println("Site Name: " + features.Sites[i].Param.Cupname)
 	  	fmt.Printf("lon: %f \n",features.Sites[i].Geometry.Coordinates[0])
 	  	fmt.Printf("lat: %f \n",features.Sites[i].Geometry.Coordinates[1])		
-//		t = append(t, road + features.Sites[i].Geometry.Coordinates[0] + "," + features.Sites[i].Geometry.Coordinates[1] + "]}," + mark + features.Sites[i].Param.Cupname + "}},")			
+		t = append(t, road + fmt.Sprintf("%f",features.Sites[i].Geometry.Coordinates[0]) + "," + fmt.Sprintf("%f",features.Sites[i].Geometry.Coordinates[1]) + "]}," + mark + features.Sites[i].Param.Cupname + "\"}},")			
 	}
 	
 	fmt.Println("\n")
+	s := `{\"type": \"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[` + long + `,` + lat + `]},\"properties\":{\"marker-size\":\"small\",\"marker-color\":\"#fc0602\",\"marker-symbol\":\"star-stroked\",\"site_name\":\"center"}}`
+	t = append(t,s) 
 
-//	fmt.Println(strings.Join(r, ""))		
+	fmt.Println( `{"type": "FeatureCollection", "features": [` +  strings.Join(t, "") + `]}`)		
 }
 
