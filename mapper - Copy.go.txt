@@ -109,7 +109,7 @@ func main() {
 
     xurl := "https://api.github.com/gists"	
     req, err := http.NewRequest("POST", xurl, bytes.NewBuffer(jsonStr))
-    req.Header.Set("Authorization", "token put-token-here") // The token
+    req.Header.Set("Authorization", "token xxxxxxx") // The token
     req.Header.Set("Content-Type", "application/json")
 
     client := &http.Client{}

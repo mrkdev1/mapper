@@ -44,8 +44,8 @@ func main() {
      }
      defer newFile.Close()
 
-     var lat string = "47.59"
-     var long string = "-122.33"
+     var lat string = "48.848022"
+     var long string = "-122.595245"
 	 
      url := "https://data.wa.gov/resource/2tkm-ssw6.geojson?%24where=within_circle(location,%20" + lat + ",%20" + long + ",%20250)"
 
@@ -109,7 +109,7 @@ func main() {
 
     xurl := "https://api.github.com/gists"	
     req, err := http.NewRequest("POST", xurl, bytes.NewBuffer(jsonStr))
-    req.Header.Set("Authorization", "token put-token-here") // The token
+    req.Header.Set("Authorization", "token xxxxxxxxxxx") // The token
     req.Header.Set("Content-Type", "application/json")
 
     client := &http.Client{}
